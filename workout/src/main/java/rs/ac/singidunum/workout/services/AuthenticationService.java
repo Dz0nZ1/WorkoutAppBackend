@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import rs.ac.singidunum.workout.enums.RoleEnum;
 import rs.ac.singidunum.workout.enums.TokenTypeEnum;
 import rs.ac.singidunum.workout.models.*;
 import rs.ac.singidunum.workout.repositories.TokenRepository;
@@ -33,7 +34,8 @@ public class AuthenticationService {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(RoleEnum.User)
+//                .role(request.getRole())
                 .build();
         var savedUser = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
