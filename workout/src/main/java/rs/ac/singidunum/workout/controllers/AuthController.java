@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
 import rs.ac.singidunum.workout.models.AuthenticationRequestModel;
 import rs.ac.singidunum.workout.models.RegisterRequestModel;
@@ -26,6 +23,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
+    @CrossOrigin("*")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequestModel request, BindingResult result){
 
         if(result.hasErrors()) {
@@ -37,6 +35,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @CrossOrigin("*")
     public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequestModel request, BindingResult result){
 
         if(result.hasErrors()) {
@@ -48,6 +47,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh-token")
+    @CrossOrigin("*")
     public void refreshToken(
             HttpServletRequest request,
             HttpServletResponse response
