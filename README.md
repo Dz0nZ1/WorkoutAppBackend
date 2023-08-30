@@ -1,2 +1,2 @@
-# WorkoutAppBackend
-Backend part of the project WorkoutApp done in Spring Boot
+# demo.backend
+Backend repository made for the purpose of class project exercise
