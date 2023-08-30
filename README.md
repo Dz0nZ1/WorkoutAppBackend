@@ -1,2 +1,2 @@
-# demo.backend
-Backend repository made for the purpose of class project exercise
+# WorkoutAppBackend
+Backend repository made for the purpose of an exam
