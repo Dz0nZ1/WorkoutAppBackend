@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.singidunum.workout.enums.RoleEnum;
 
 
 @Data
@@ -25,6 +24,6 @@ public class RegisterRequestModel {
     @NotBlank(message = "Password is mandatory")
     @Min(value = 8, message = "Password must have at least 8 characters")
     private String password;
-    private RoleEnum role;
+//    private RoleEnum role;
 
 }
