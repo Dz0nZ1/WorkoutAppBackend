@@ -9,7 +9,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import rs.ac.singidunum.workout.enums.RoleEnum;
 import rs.ac.singidunum.workout.enums.TokenTypeEnum;
+import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
 import rs.ac.singidunum.workout.models.*;
 import rs.ac.singidunum.workout.repositories.TokenRepository;
 import rs.ac.singidunum.workout.repositories.UserRepository;
@@ -33,7 +35,7 @@ public class AuthenticationService {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(RoleEnum.User)
                 .build();
         var savedUser = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -42,6 +44,10 @@ public class AuthenticationService {
         return AuthenticationResponseModel.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .role(user.getRole())
                 .build();
 
     }
@@ -60,6 +66,10 @@ public class AuthenticationService {
         return AuthenticationResponseModel.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .role(user.getRole())
                 .build();
 
     }
@@ -76,7 +86,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllUserTokens(UserModel user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getUser_id());
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
@@ -98,9 +108,11 @@ public class AuthenticationService {
         }
         refreshToken = authHeader.substring(7);
        username = jwtService.extractUsername(refreshToken);
+
+
         if (username != null) {
+
             var user = this.userRepository.findByEmail(username);
-            //TODO: ADD USER DOESN'T EXIST HANDLE WHEN HANDLER IS MADE
 
             if (jwtService.isTokenValid(refreshToken, user)) {
                 var accessToken = jwtService.generateToken(user);
@@ -112,7 +124,7 @@ public class AuthenticationService {
                         .build();
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
-        }
+        } else throw new UserNotFoundException("Email not found");
     }
 
 

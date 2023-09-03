@@ -1,13 +1,12 @@
 package rs.ac.singidunum.workout.models;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.singidunum.workout.enums.RoleEnum;
 
 
 @Data
@@ -23,8 +22,7 @@ public class RegisterRequestModel {
     @Email(message = "Email address must be in valid format")
     private String email;
     @NotBlank(message = "Password is mandatory")
-    @Min(value = 8, message = "Password must have at least 8 characters")
+    @Size(min = 3, max = 15, message = "Password must have at least 8 characters")
     private String password;
-    private RoleEnum role;
 
 }

@@ -5,15 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.singidunum.workout.enums.RoleEnum;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class AuthenticationResponseModel {
-
     @JsonProperty("access_token")
     private String accessToken;
-    @JsonProperty("refresh_token")
     private String refreshToken;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private RoleEnum role;
 }

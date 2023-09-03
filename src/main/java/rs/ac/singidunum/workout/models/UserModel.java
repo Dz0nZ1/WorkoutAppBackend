@@ -23,7 +23,7 @@ public class UserModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
     @Column(name = "first_name")
     @NotBlank(message = "First name is mandatory")
     private String firstName;

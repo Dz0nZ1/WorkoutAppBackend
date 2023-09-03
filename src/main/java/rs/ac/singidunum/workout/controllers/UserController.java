@@ -29,13 +29,11 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    @CrossOrigin("*")
     public ResponseEntity<List<UserModel>> getAllUsers(){
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    @CrossOrigin("*")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserModel userModel, BindingResult result){
 
         if(result.hasErrors()) {
@@ -46,7 +44,6 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
-    @CrossOrigin("*")
     public ResponseEntity<?> getUser(@PathVariable("id") Long userId) throws UserNotFoundException {
         return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
     }
