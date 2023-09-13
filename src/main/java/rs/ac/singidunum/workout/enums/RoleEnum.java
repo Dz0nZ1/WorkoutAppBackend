@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.List;
@@ -13,7 +12,16 @@ import static rs.ac.singidunum.workout.enums.PermissionEnum.*;
 
 @RequiredArgsConstructor
 public enum RoleEnum {
-    User(Collections.emptySet()),
+//    User(Collections.emptySet()),
+
+    User(
+            Set.of(
+                    UserRead,
+                    UserUpdate,
+                    UserDelete,
+                    UserCreate
+            )
+    ),
     Admin(
             Set.of(
                     AdminRead,
@@ -23,7 +31,11 @@ public enum RoleEnum {
                     EmployeeRead,
                     EmployeeCreate,
                     EmployeeUpdate,
-                    EmployeeDelete
+                    EmployeeDelete,
+                    UserRead,
+                    UserUpdate,
+                    UserDelete,
+                    UserCreate
             )
     ),
     Employee(
@@ -31,7 +43,11 @@ public enum RoleEnum {
                     EmployeeRead,
                     EmployeeCreate,
                     EmployeeUpdate,
-                    EmployeeDelete
+                    EmployeeDelete,
+                    UserRead,
+                    UserUpdate,
+                    UserDelete,
+                    UserCreate
             )
     );
 
