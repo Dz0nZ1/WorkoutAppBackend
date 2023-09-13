@@ -12,7 +12,17 @@ public enum PermissionEnum {
     EmployeeRead("employee:read"),
     EmployeeUpdate("employee:update"),
     EmployeeCreate("employee:create"),
-    EmployeeDelete("employee:delete");
+    EmployeeDelete("employee:delete"),
+
+    UserRead("user:read"),
+    UserUpdate("user:update"),
+    UserCreate("user:create"),
+    UserDelete("user:delete"),
+
+
+    ;
+
+
 
     @Getter
     private final String permission;
