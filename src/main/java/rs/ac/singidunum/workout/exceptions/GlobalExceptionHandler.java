@@ -53,4 +53,26 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 
     }
+
+    @ExceptionHandler(ExerciseNotFoundException.class)
+    public ResponseEntity<ErrorModel> handleExerciseNotFoundException(ExerciseNotFoundException ex) {
+        var error =  ErrorModel.builder()
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .message(ex.getMessage())
+                .time(Instant.now())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+
+    }
+
+    @ExceptionHandler(PlanNotFoundException.class)
+    public ResponseEntity<ErrorModel> handlePlanNotFoundException(PlanNotFoundException ex) {
+        var error =  ErrorModel.builder()
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .message(ex.getMessage())
+                .time(Instant.now())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+
+    }
 }
