@@ -19,10 +19,9 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static rs.ac.singidunum.workout.enums.PermissionEnum.*;
-import static rs.ac.singidunum.workout.enums.RoleEnum.Admin;
-import static rs.ac.singidunum.workout.enums.RoleEnum.Employee;
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.http.HttpMethod.DELETE;
+import static rs.ac.singidunum.workout.enums.RoleEnum.*;
 
 
 @Configuration
@@ -39,20 +38,51 @@ public class SecurityConfiguration {
 
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/products/all", "/products/create", "/users/create", "users/all")
+
+                /* Permit pass */
+                .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/products/all", "/products/create", "/users/create", "/api/v1/auth/refresh-token")
                 .permitAll()
+
+                /* ROLES */
                 .requestMatchers("/api/v1/admin/**").hasRole(Admin.name())
                 .requestMatchers("/api/v1/employee/**").hasAnyRole(Admin.name(), Employee.name())
+                .requestMatchers("/users/**").hasAnyRole(Admin.name(),User.name())
+                .requestMatchers("/api/v1/exercise/**").hasRole(Admin.name())
+                .requestMatchers("/api/v1/plan/**").hasAnyRole(Admin.name(), User.name())
+
+                /* Authorities */
+
+                .requestMatchers(GET, "/plan/all").hasAuthority(UserRead.name())
+                .requestMatchers(GET, "/plan/get/**").hasAuthority(UserRead.name())
+                .requestMatchers(POST, "/plan/create").hasAuthority(UserCreate.name())
+                .requestMatchers(DELETE, "/plan/delete/**").hasAuthority(UserDelete.name())
+
+
+                //exercises
+                .requestMatchers(GET, "/exercise/all").hasAuthority(AdminRead.name())
+                .requestMatchers(GET, "/exercise/get/**").hasAuthority(AdminRead.name())
+                .requestMatchers(POST, "/exercise/create").hasAuthority(AdminCreate.name())
+                .requestMatchers(DELETE, "/exercise/delete/**").hasAuthority(AdminDelete.name())
+
+                //users
+                .requestMatchers(GET,"/users/all").hasAuthority(UserRead.name())
+                .requestMatchers(GET,"/users/all").hasAuthority(AdminRead.name())
+
+                //admin
                 .requestMatchers(GET, "/api/v1/admin/all").hasAuthority(AdminRead.name())
                 .requestMatchers(POST, "/api/v1/admin/create").hasAuthority(AdminCreate.name())
                 .requestMatchers(PUT, "/api/v1/admin/update/**").hasAuthority(AdminUpdate.name())
                 .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(AdminDelete.name())
+
+                //employe
                 .requestMatchers(GET, "/api/v1/employee/**").hasAnyAuthority(AdminRead.name(), EmployeeRead.name())
                 .requestMatchers(POST, "/api/v1/employee/**").hasAnyAuthority(AdminCreate.name(), EmployeeCreate.name())
                 .requestMatchers(PUT, "/api/v1/employee/**").hasAnyAuthority(AdminUpdate.name(), EmployeeUpdate.name())
                 .requestMatchers(DELETE, "/api/v1/employee/**").hasAnyAuthority(AdminDelete.name(), EmployeeDelete.name())
                 .anyRequest()
                 .authenticated()
+
+                /* Other settings */
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
