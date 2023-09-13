@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.models;
+package rs.ac.singidunum.workout.models.auth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,7 @@ import rs.ac.singidunum.workout.enums.RoleEnum;
 @Builder
 public class AuthenticationResponseModel {
     @JsonProperty("access_token")
+    private Long user_id;
     private String accessToken;
     private String refreshToken;
     private String email;

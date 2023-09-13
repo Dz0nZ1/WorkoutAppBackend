@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.services;
+package rs.ac.singidunum.workout.services.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

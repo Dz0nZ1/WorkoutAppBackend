@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.controllers;
+package rs.ac.singidunum.workout.controllers.auth;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
-import rs.ac.singidunum.workout.models.AuthenticationRequestModel;
-import rs.ac.singidunum.workout.models.RegisterRequestModel;
-import rs.ac.singidunum.workout.services.AuthenticationService;
+import rs.ac.singidunum.workout.models.auth.AuthenticationRequestModel;
+import rs.ac.singidunum.workout.models.auth.AuthenticationResponseModel;
+import rs.ac.singidunum.workout.models.auth.RegisterRequestModel;
+import rs.ac.singidunum.workout.services.auth.AuthenticationService;
 
 import java.io.IOException;
 
@@ -35,14 +36,13 @@ public class AuthController {
 
     @PostMapping("/login")
     @CrossOrigin("*")
-    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequestModel request, BindingResult result){
+    public AuthenticationResponseModel login(@Valid @RequestBody AuthenticationRequestModel request, BindingResult result){
 
-        if(result.hasErrors()) {
-            var exceptionHandler = new InvalidArgumentsHandler();
-            return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
-        }
-
-        return new ResponseEntity<>(authenticationService.authenticate(request), HttpStatus.OK);
+//        if(result.hasErrors()) {
+//            var exceptionHandler = new InvalidArgumentsHandler();
+//            return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
+//        }
+        return authenticationService.authenticate(request);
     }
 
     @PostMapping("/refresh-token")

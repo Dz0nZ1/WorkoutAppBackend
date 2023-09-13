@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.services;
+package rs.ac.singidunum.workout.services.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import rs.ac.singidunum.workout.enums.RoleEnum;
 import rs.ac.singidunum.workout.enums.TokenTypeEnum;
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.models.*;
+import rs.ac.singidunum.workout.models.auth.*;
 import rs.ac.singidunum.workout.repositories.TokenRepository;
 import rs.ac.singidunum.workout.repositories.UserRepository;
 
@@ -64,6 +64,7 @@ public class AuthenticationService {
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         return AuthenticationResponseModel.builder()
+                .user_id(user.getUser_id())
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .email(user.getEmail())

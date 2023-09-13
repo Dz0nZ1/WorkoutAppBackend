@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.models;
+package rs.ac.singidunum.workout.models.auth;
 
 import rs.ac.singidunum.workout.enums.TokenTypeEnum;
 import jakarta.persistence.*;

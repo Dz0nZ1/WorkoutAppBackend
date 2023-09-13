@@ -1,9 +1,9 @@
-package rs.ac.singidunum.workout.services;
+package rs.ac.singidunum.workout.services.users;
 
 
 import org.springframework.stereotype.Service;
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.models.UserModel;
+import rs.ac.singidunum.workout.models.auth.UserModel;
 import rs.ac.singidunum.workout.repositories.UserRepository;
 
 import java.util.List;

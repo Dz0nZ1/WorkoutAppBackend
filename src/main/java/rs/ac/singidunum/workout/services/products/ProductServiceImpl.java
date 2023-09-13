@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.services;
+package rs.ac.singidunum.workout.services.products;
 
 import org.springframework.stereotype.Service;
 import rs.ac.singidunum.workout.models.ProductModel;
