@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.models.ProductModel;
-import rs.ac.singidunum.workout.services.ProductService;
+import rs.ac.singidunum.workout.services.products.ProductService;
 
 import java.util.List;
 
