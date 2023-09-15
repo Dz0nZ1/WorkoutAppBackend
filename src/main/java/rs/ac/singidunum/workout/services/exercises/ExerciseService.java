@@ -13,7 +13,9 @@ public interface ExerciseService {
 
     ExerciseModel getExercise(Long exerciseId) throws ExerciseNotFoundException;
 
-    ExerciseModel findByName(String name);
+    ExerciseModel findExerciseByName(String name);
+
+    void deleteExerciseByName(String name);
 
     void deleteExercise(Long exerciseId);
 

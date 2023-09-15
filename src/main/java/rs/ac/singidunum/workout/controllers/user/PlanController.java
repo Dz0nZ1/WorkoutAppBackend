@@ -32,6 +32,13 @@ public class PlanController {
         return new ResponseEntity<>(planService.getAllPlans(), HttpStatus.OK);
     }
 
+    @GetMapping("/user/{id}")
+    @PreAuthorize("hasAuthority('user:read')")
+    public ResponseEntity<List<PlanModel>> getAllPlansById(@PathVariable("id") Long id){
+        return new ResponseEntity<>(planService.getAllPlansById(id), HttpStatus.OK);
+    }
+
+
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<PlanModel> getExercise(@PathVariable("id") Long planId){
@@ -55,7 +62,7 @@ public class PlanController {
     public ResponseEntity<Map<String, String>> deletePlan(@PathVariable("id") Long planId) {
         planService.deletePlan(planId);
         Map<String, String> response = new HashMap<>();
-        response.put("defaultMessage", "Exercise was deleted");
+        response.put("defaultMessage", "Plan was deleted");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

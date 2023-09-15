@@ -44,6 +44,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     username = jwtService.extractUsername(jwt);
 
+    response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+
 //    if(username !=null && SecurityContextHolder.getContext().getAuthentication() == null){
 //        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 //        if(jwtService.isTokenValid(jwt, userDetails)){

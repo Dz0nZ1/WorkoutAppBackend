@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
     public List<UserModel> getAllUsers() {
         return userRepository.findAll();
     }
+
 
     @Override
     public UserModel createUser(UserModel userModel) {

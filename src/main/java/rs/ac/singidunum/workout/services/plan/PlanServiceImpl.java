@@ -22,6 +22,12 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
+    public List<PlanModel> getAllPlansById(Long id) {
+        return planRepository.findAllByIdentity(id);
+    }
+
+
+    @Override
     public PlanModel getPlan(Long id) {
         return planRepository.findById(id).orElseThrow(() -> new PlanNotFoundException("Plan doesn't exist"));
     }

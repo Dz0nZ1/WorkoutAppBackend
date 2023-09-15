@@ -9,5 +9,7 @@ public interface ExerciseRepository extends JpaRepository<ExerciseModel, Long> {
 
     ExerciseModel findByName(String name);
 
+    void deleteByName(String name);
+
 
 }

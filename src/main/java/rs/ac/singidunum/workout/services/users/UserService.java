@@ -1,7 +1,7 @@
 package rs.ac.singidunum.workout.services.users;
 
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.models.auth.UserModel;
+import rs.ac.singidunum.workout.models.auth.UserModel;;
 
 import java.util.List;
 

@@ -26,8 +26,8 @@ public class PlanModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "user_identity")
-    private Long user_identity;
+    @Column(name = "identity")
+    private Long identity;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")

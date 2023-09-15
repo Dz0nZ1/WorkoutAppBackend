@@ -2,7 +2,6 @@ package rs.ac.singidunum.workout.services.exercises;
 
 import org.springframework.stereotype.Service;
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
-import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
 import rs.ac.singidunum.workout.models.workouts.ExerciseModel;
 import rs.ac.singidunum.workout.repositories.ExerciseRepository;
 
@@ -34,8 +33,13 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public ExerciseModel findByName(String name) {
+    public ExerciseModel findExerciseByName(String name) {
         return exerciseRepository.findByName(name);
+    }
+
+    @Override
+    public void deleteExerciseByName(String name) {
+        exerciseRepository.deleteByName(name);
     }
 
     @Override
@@ -49,11 +53,6 @@ public class ExerciseServiceImpl implements ExerciseService {
         newExercise.setName(exerciseModel.getName());
         newExercise.setCategory(exerciseModel.getCategory());
         newExercise.setPhoto(exerciseModel.getPhoto());
-        newExercise.setDescription(newExercise.getDescription());
-        newExercise.setMetric(exerciseModel.getMetric());
-        newExercise.setReps(exerciseModel.getReps());
-        newExercise.setSets(exerciseModel.getSets());
-        newExercise.setWeight(exerciseModel.getWeight());
         return exerciseRepository.save(newExercise);
     }
 }

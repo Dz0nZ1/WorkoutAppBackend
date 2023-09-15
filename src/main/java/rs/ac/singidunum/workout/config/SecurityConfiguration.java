@@ -40,7 +40,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
 
                 /* Permit pass */
-                .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/products/all", "/products/create", "/users/create", "/api/v1/auth/refresh-token")
+                .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/products/all", "/products/create", "/users/create", "/api/v1/auth/refresh-token", "/v3/api-docs",
+                        "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**", "/swagger-resources", "/swagger-resources/**", "/v2/api-docs")
                 .permitAll()
 
                 /* ROLES */
@@ -52,10 +53,12 @@ public class SecurityConfiguration {
 
                 /* Authorities */
 
-                .requestMatchers(GET, "/plan/all").hasAuthority(UserRead.name())
-                .requestMatchers(GET, "/plan/get/**").hasAuthority(UserRead.name())
-                .requestMatchers(POST, "/plan/create").hasAuthority(UserCreate.name())
-                .requestMatchers(DELETE, "/plan/delete/**").hasAuthority(UserDelete.name())
+                //plans
+                .requestMatchers(GET, "/api/v1/plan/all").hasAuthority(UserRead.name())
+                .requestMatchers(GET, "/api/v1/plan/get/**").hasAuthority(UserRead.name())
+                .requestMatchers(GET, "/api/v1/plan/user/**").hasAuthority(UserRead.name())
+                .requestMatchers(POST, "/api/v1/plan/create").hasAuthority(UserCreate.name())
+                .requestMatchers(DELETE, "/api/v1/plan/delete/**").hasAuthority(UserDelete.name())
 
 
                 //exercises
@@ -73,6 +76,7 @@ public class SecurityConfiguration {
                 .requestMatchers(POST, "/api/v1/admin/create").hasAuthority(AdminCreate.name())
                 .requestMatchers(PUT, "/api/v1/admin/update/**").hasAuthority(AdminUpdate.name())
                 .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(AdminDelete.name())
+
 
                 //employe
                 .requestMatchers(GET, "/api/v1/employee/**").hasAnyAuthority(AdminRead.name(), EmployeeRead.name())
@@ -104,13 +108,17 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "PATCH", "DELETE"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList(
+                "Access-Control-Allow-Origin",
                 "Accept", "Origin", "Content-Type", "Depth", "User-Agent", "If-Modified-Since",
                 "Cache-Control", "Authorization", "X-Req", "X-File-Size", "X-Requested-With", "X-File-Name"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+
+
 }
