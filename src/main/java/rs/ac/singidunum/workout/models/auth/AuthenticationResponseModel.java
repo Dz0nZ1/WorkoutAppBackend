@@ -13,8 +13,8 @@ import rs.ac.singidunum.workout.enums.RoleEnum;
 @Builder
 public class AuthenticationResponseModel {
     @JsonProperty("access_token")
-    private Long user_id;
     private String accessToken;
+    private Long user_id;
     private String refreshToken;
     private String email;
     private String firstName;
