@@ -20,9 +20,11 @@ import java.util.Map;
 @RequestMapping("/api/v1/exercise")
 @PreAuthorize("hasRole('Admin')")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ExerciseController {
 
     private final ExerciseService exerciseService;
+
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('admin:read')")
@@ -34,6 +36,12 @@ public class ExerciseController {
     @PreAuthorize("hasAuthority('admin:read')")
     public ResponseEntity<ExerciseModel> getExercise(@PathVariable("id") Long exerciseId){
         return new ResponseEntity<>(exerciseService.getExercise(exerciseId), HttpStatus.OK);
+    }
+
+    @GetMapping("/get/{name}")
+    @PreAuthorize("hasAnyAuthority('admin:read')")
+    public ResponseEntity<ExerciseModel> getExerciseByName(@PathVariable("name") String name){
+        return new ResponseEntity<>(exerciseService.findExerciseByName(name), HttpStatus.OK);
     }
 
     @PostMapping("/create")
@@ -56,6 +64,15 @@ public class ExerciseController {
         response.put("defaultMessage", "Exercise was deleted");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+//    @DeleteMapping("/deleteone/{name}")
+//    @PreAuthorize("hasAuthority('admin:delete')")
+//    public ResponseEntity<Map<String, String>> deleteExerciseByName(@PathVariable("name") String name) {
+//        exerciseService.deleteExerciseByName(name);
+//        Map<String, String> response = new HashMap<>();
+//        response.put("defaultMessage", "Exercise was deleted");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
 
 
     @PutMapping("/update/{id}")
