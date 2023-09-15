@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.singidunum.workout.enums.MetricEnum;
 
 @Data
 @AllArgsConstructor
@@ -25,15 +24,4 @@ public class ExerciseModel {
     private String photo;
     @Column(name="category")
     private String category;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "sets")
-    private int sets;
-    @Column(name = "reps")
-    private int reps;
-    @Column(name = "weight")
-    private double weight;
-    @Column(name = "metric")
-    @Enumerated(EnumType.STRING)
-    private MetricEnum metric;
 }
