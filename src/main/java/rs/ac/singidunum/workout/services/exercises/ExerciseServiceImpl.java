@@ -1,6 +1,7 @@
 package rs.ac.singidunum.workout.services.exercises;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
 import rs.ac.singidunum.workout.models.workouts.ExerciseModel;
 import rs.ac.singidunum.workout.repositories.ExerciseRepository;
@@ -42,9 +43,10 @@ public class ExerciseServiceImpl implements ExerciseService {
         exerciseRepository.deleteByName(name);
     }
 
+    @Transactional
     @Override
     public void deleteExercise(Long exerciseId) {
-        exerciseRepository.deleteById(exerciseId);
+        exerciseRepository.deleteByExerciseId(exerciseId);
     }
 
     @Override
