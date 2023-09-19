@@ -11,5 +11,7 @@ public interface ExerciseRepository extends JpaRepository<ExerciseModel, Long> {
 
     void deleteByName(String name);
 
+    void deleteByExerciseId(Long exercise_id);
+
 
 }
