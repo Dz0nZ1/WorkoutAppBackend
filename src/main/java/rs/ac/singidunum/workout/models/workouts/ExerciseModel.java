@@ -17,7 +17,7 @@ public class ExerciseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "exercise_id")
-    private Long exercise_id;
+    private Long exerciseId;
     @Column(name = "name")
     private String name;
     @Column(name = "photo")
