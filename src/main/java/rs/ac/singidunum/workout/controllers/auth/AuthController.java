@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
 import rs.ac.singidunum.workout.models.auth.AuthenticationRequestModel;
-import rs.ac.singidunum.workout.models.auth.AuthenticationResponseModel;
 import rs.ac.singidunum.workout.models.auth.RegisterRequestModel;
 import rs.ac.singidunum.workout.services.auth.AuthenticationService;
 
@@ -35,14 +34,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @CrossOrigin("*")
-    public AuthenticationResponseModel login(@Valid @RequestBody AuthenticationRequestModel request, BindingResult result){
+    public ResponseEntity<?> login(@Valid @RequestBody AuthenticationRequestModel request, BindingResult result){
 
-//        if(result.hasErrors()) {
-//            var exceptionHandler = new InvalidArgumentsHandler();
-//            return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
-//        }
-        return authenticationService.authenticate(request);
+        if(result.hasErrors()) {
+            var exceptionHandler = new InvalidArgumentsHandler();
+            return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<> (authenticationService.authenticate(request), HttpStatus.OK);
     }
 
     @PostMapping("/refresh-token")
