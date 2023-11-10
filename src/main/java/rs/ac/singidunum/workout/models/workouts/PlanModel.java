@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import rs.ac.singidunum.workout.models.auth.UserModel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -33,6 +35,7 @@ public class PlanModel {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private UserModel user;
 
+
     @ManyToMany
     @JoinTable(
             name = "plan_exercise",
@@ -40,6 +43,18 @@ public class PlanModel {
             inverseJoinColumns = @JoinColumn(name = "exercise_id")
     )
     private Set<ExerciseModel> exercises = new HashSet<>();
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "plan_properties",
+            joinColumns = @JoinColumn(name = "plan_id"),
+            inverseJoinColumns = @JoinColumn(name = "property_id")
+    )
+    private List<PropertyModel> properties = new ArrayList<>();
+
+
+
 
 
 }
