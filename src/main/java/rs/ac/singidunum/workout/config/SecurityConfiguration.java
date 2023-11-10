@@ -50,6 +50,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/users/**").hasAnyRole(Admin.name(),User.name())
                 .requestMatchers("/api/v1/exercise/**").hasRole(Admin.name())
                 .requestMatchers("/api/v1/plan/**").hasAnyRole(Admin.name(), User.name())
+                .requestMatchers("/api/v1/properties/**").hasAnyRole(Admin.name(), User.name())
 
                 /* Authorities */
 
@@ -58,14 +59,26 @@ public class SecurityConfiguration {
                 .requestMatchers(GET, "/api/v1/plan/get/**").hasAuthority(UserRead.name())
                 .requestMatchers(GET, "/api/v1/plan/user/**").hasAuthority(UserRead.name())
                 .requestMatchers(POST, "/api/v1/plan/create").hasAuthority(UserCreate.name())
+                .requestMatchers(PUT, "/api/v1/plan/update/**").hasAuthority(UserUpdate.name())
                 .requestMatchers(DELETE, "/api/v1/plan/delete/**").hasAuthority(UserDelete.name())
 
 
+                //properties
+                .requestMatchers(GET, "/api/v1/properties/all").hasAuthority(UserRead.name())
+                .requestMatchers(GET, "/api/v1/properties/plan").hasAuthority(UserRead.name())
+                .requestMatchers(GET, "/api/v1/properties/get/**").hasAuthority(UserRead.name())
+                .requestMatchers(POST, "/api/v1/properties/create").hasAuthority(UserCreate.name())
+                .requestMatchers(PUT, "/api/v1/properties/update/**").hasAuthority(UserUpdate.name())
+                .requestMatchers(DELETE, "/api/v1/properties/delete/**").hasAuthority(UserDelete.name())
+
+
+
                 //exercises
-                .requestMatchers(GET, "/exercise/all").hasAuthority(AdminRead.name())
-                .requestMatchers(GET, "/exercise/get/**").hasAuthority(AdminRead.name())
-                .requestMatchers(POST, "/exercise/create").hasAuthority(AdminCreate.name())
-                .requestMatchers(DELETE, "/exercise/delete/**").hasAuthority(AdminDelete.name())
+                .requestMatchers(GET, "/api/v1/exercise/all").hasAuthority(AdminRead.name())
+                .requestMatchers(GET, "/api/v1/exercise/get/**").hasAuthority(AdminRead.name())
+                .requestMatchers(POST, "/api/v1/exercise/create").hasAuthority(AdminCreate.name())
+                .requestMatchers(PUT, "/api/v1/exercise/update/**").hasAuthority(AdminUpdate.name())
+                .requestMatchers(DELETE, "/api/v1/exercise/delete/**").hasAuthority(AdminDelete.name())
 
                 //users
                 .requestMatchers(GET,"/users/all").hasAuthority(UserRead.name())
