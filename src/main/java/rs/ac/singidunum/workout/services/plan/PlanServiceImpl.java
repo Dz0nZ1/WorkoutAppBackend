@@ -22,6 +22,11 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
+    public List<PlanModel> getAllPlansByName(String name) {
+        return planRepository.findAllByName(name);
+    }
+
+    @Override
     public List<PlanModel> getAllPlansById(Long id) {
         return planRepository.findAllByIdentity(id);
     }
