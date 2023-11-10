@@ -8,6 +8,8 @@ public interface PlanService {
 
     List<PlanModel> getAllPlans();
 
+    List<PlanModel> getAllPlansByName(String name);
+
     List<PlanModel> getAllPlansById(Long id);
 
     PlanModel getPlan(Long id);
