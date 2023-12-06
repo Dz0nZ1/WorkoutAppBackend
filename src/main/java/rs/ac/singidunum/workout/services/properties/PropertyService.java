@@ -6,7 +6,7 @@ public interface PropertyService {
 
     List<PropertyModel> getAllProperties();
 
-    List<PropertyModel> findAllPropertiesFromPlan(String fromPlane);
+    List<PropertyModel> findAllPropertiesFromExercise(String fromPlane);
 
     PropertyModel getProperty(Long propertyId);
 
