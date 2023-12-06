@@ -38,12 +38,6 @@ public class PlanController {
         return new ResponseEntity<>(planService.getAllPlansById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/get/{name}")
-    @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<List<PlanModel>> getAllPlansByName(@PathVariable("name") String name){
-        return new ResponseEntity<>(planService.getAllPlansByName(name), HttpStatus.OK);
-    }
-
 
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAuthority('user:read')")
