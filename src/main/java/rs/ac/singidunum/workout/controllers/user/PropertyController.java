@@ -34,7 +34,7 @@ public class PropertyController {
     @GetMapping("/get/{name}")
     @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<List<PropertyModel>> getAllPropertiesByPlan(@PathVariable("name") String name) {
-        return new ResponseEntity<>(propertyService.findAllPropertiesFromPlan(name), HttpStatus.OK);
+        return new ResponseEntity<>(propertyService.findAllPropertiesFromExercise(name), HttpStatus.OK);
     }
 
 
