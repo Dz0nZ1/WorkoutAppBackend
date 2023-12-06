@@ -1,5 +1,6 @@
 package rs.ac.singidunum.workout.models.workouts;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,12 +46,8 @@ public class PlanModel {
     private Set<ExerciseModel> exercises = new HashSet<>();
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "plan_properties",
-            joinColumns = @JoinColumn(name = "plan_id"),
-            inverseJoinColumns = @JoinColumn(name = "property_id")
-    )
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<PropertyModel> properties = new ArrayList<>();
 
 
