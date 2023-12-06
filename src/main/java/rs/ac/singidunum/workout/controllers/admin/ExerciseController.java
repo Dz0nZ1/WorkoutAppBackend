@@ -37,11 +37,6 @@ public class ExerciseController {
         return new ResponseEntity<>(exerciseService.getExercise(exerciseId), HttpStatus.OK);
     }
 
-    @GetMapping("/get/{name}")
-    @PreAuthorize("hasAnyAuthority('admin:read')")
-    public ResponseEntity<ExerciseModel> getExerciseByName(@PathVariable("name") String name){
-        return new ResponseEntity<>(exerciseService.findExerciseByName(name), HttpStatus.OK);
-    }
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('admin:create')")
