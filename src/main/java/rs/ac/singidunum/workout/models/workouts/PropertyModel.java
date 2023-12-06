@@ -1,5 +1,6 @@
 package rs.ac.singidunum.workout.models.workouts;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,9 +21,6 @@ public class PropertyModel {
     @Column(name = "property_id")
     private Long propertyId;
 
-    @Column(name = "for_plan")
-    private String forPlan;
-
     @Column(name = "for_exercise")
     private String forExercise;
 
@@ -34,4 +32,9 @@ public class PropertyModel {
 
     @Column(name = "weight")
     private Double weight;
+
+    @ManyToOne
+    @JoinColumn(name = "plan_id")
+    @JsonBackReference
+    private PlanModel plan;
 }
