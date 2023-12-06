@@ -22,8 +22,8 @@ public class PropertyServiceImpl implements PropertyService {
 
 
     @Override
-    public List<PropertyModel> findAllPropertiesFromPlan(String fromPlane) {
-        return propertiesRepository.findAllByForPlan(fromPlane);
+    public List<PropertyModel> findAllPropertiesFromExercise(String forExercise) {
+        return propertiesRepository.findAllByForExercise(forExercise);
     }
 
     @Override
