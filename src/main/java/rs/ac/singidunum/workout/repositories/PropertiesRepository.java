@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PropertiesRepository extends JpaRepository<PropertyModel, Long> {
-    List<PropertyModel> findAllByForPlan(String forPlan);
+    List<PropertyModel> findAllByForExercise(String forExercise);
 }
