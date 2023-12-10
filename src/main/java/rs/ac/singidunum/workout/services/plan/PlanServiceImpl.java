@@ -60,9 +60,15 @@ public class PlanServiceImpl implements PlanService{
     @Override
     public PlanModel updatePlan(PlanModel planModel, Long id) {
         var newPlan = planRepository.findById(id).orElseThrow(() -> new PlanNotFoundException("Plan doesn't exist "));
-        newPlan.setName(planModel.getName());
-        newPlan.setPlanId(newPlan.getPlanId());
-        return planRepository.save(newPlan);
+
+        if(planModel.getName() != null) {
+            newPlan.setName(planModel.getName());
+        }
+
+        planRepository.save(newPlan);
+
+        return newPlan;
+
     }
 
     @Override
