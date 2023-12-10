@@ -1,7 +1,9 @@
 package rs.ac.singidunum.workout.services.properties;
 
 import org.springframework.stereotype.Service;
+import rs.ac.singidunum.workout.exceptions.PlanNotFoundException;
 import rs.ac.singidunum.workout.models.workouts.PropertyModel;
+import rs.ac.singidunum.workout.repositories.PlanRepository;
 import rs.ac.singidunum.workout.repositories.PropertiesRepository;
 
 import java.util.List;
@@ -10,9 +12,11 @@ import java.util.List;
 public class PropertyServiceImpl implements PropertyService {
 
     private final PropertiesRepository propertiesRepository;
+    private final PlanRepository planRepository;
 
-    public PropertyServiceImpl(PropertiesRepository propertiesRepository) {
+    public PropertyServiceImpl(PropertiesRepository propertiesRepository, PlanRepository planRepository) {
         this.propertiesRepository = propertiesRepository;
+        this.planRepository = planRepository;
     }
 
     @Override
@@ -22,8 +26,14 @@ public class PropertyServiceImpl implements PropertyService {
 
 
     @Override
-    public List<PropertyModel> findAllPropertiesFromExercise(String forExercise) {
+    public List<PropertyModel> getAllPropertiesFromExercise(String forExercise) {
         return propertiesRepository.findAllByForExercise(forExercise);
+    }
+
+    @Override
+    public List<PropertyModel> getAllPropertiesByPlan(Long planId) {
+        var plan = planRepository.findById(planId).orElseThrow(() -> new PlanNotFoundException("Plan not found"));
+        return propertiesRepository.findAllByPlan(plan);
     }
 
     @Override
