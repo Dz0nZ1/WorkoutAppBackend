@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class TokenModel {
+public class Token {
 
     @Id
     @GeneratedValue
@@ -30,5 +30,5 @@ public class TokenModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    public UserModel user;
+    public User user;
 }

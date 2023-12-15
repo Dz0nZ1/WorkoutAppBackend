@@ -3,21 +3,21 @@ package rs.ac.singidunum.workout.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import rs.ac.singidunum.workout.models.auth.TokenModel;
+import rs.ac.singidunum.workout.models.auth.Token;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TokenRepository extends JpaRepository<TokenModel, Long> {
+public interface TokenRepository extends JpaRepository<Token, Long> {
 
     @Query(value = """
-      select t from TokenModel t inner join UserModel u\s
+      select t from Token t inner join User u\s
       on t.user.user_id = u.user_id\s
       where u.user_id = :id and (t.expired = false or t.revoked = false)\s
       """)
-    List<TokenModel> findAllValidTokenByUser(Long id);
+    List<Token> findAllValidTokenByUser(Long id);
 
-    Optional<TokenModel> findByToken(String token);
+    Optional<Token> findByToken(String token);
 
 }
