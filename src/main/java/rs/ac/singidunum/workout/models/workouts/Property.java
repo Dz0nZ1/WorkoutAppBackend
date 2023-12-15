@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "properties")
-public class PropertyModel {
+public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +36,5 @@ public class PropertyModel {
     @ManyToOne
     @JoinColumn(name = "plan_id")
     @JsonBackReference
-    private PlanModel plan;
+    private Plan plan;
 }

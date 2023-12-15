@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.singidunum.workout.models.workouts.PropertyModel;
+import rs.ac.singidunum.workout.models.workouts.Property;
 import rs.ac.singidunum.workout.services.properties.PropertyService;
 
 import java.util.HashMap;
@@ -26,41 +26,41 @@ public class PropertyController {
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<List<PropertyModel>> getAllProperties(){
+    public ResponseEntity<List<Property>> getAllProperties(){
         return new ResponseEntity<>(propertyService.getAllProperties(), HttpStatus.OK);
     }
 
     @GetMapping("/plan/{id}")
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<List<PropertyModel>> getAllPropertiesByPlan(@PathVariable("id") Long planId){
+    public ResponseEntity<List<Property>> getAllPropertiesByPlan(@PathVariable("id") Long planId){
         return new ResponseEntity<>(propertyService.getAllPropertiesByPlan(planId), HttpStatus.OK);
     }
 
 
     @GetMapping("/get/{name}")
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<List<PropertyModel>> getAllPropertiesByPlan(@PathVariable("name") String name) {
+    public ResponseEntity<List<Property>> getAllPropertiesByPlan(@PathVariable("name") String name) {
         return new ResponseEntity<>(propertyService.getAllPropertiesFromExercise(name), HttpStatus.OK);
     }
 
 
 //    @GetMapping("/get/{id}")
 //    @PreAuthorize("hasAuthority('user:read')")
-//    public ResponseEntity<PropertyModel> getProperty(@PathVariable("id") Long id) {
+//    public ResponseEntity<Property> getProperty(@PathVariable("id") Long id) {
 //        return new ResponseEntity<>(propertyService.getProperty(id), HttpStatus.OK);
 //    }
 
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<PropertyModel> createProperty(@Valid @RequestBody PropertyModel property, BindingResult result) {
+    public ResponseEntity<Property> createProperty(@Valid @RequestBody Property property, BindingResult result) {
         return new ResponseEntity<>(propertyService.createProperty(property), HttpStatus.OK);
     }
 
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<PropertyModel> updateProperty(@Valid @RequestBody PropertyModel property, @PathVariable("id") Long id, BindingResult result) {
+    public ResponseEntity<Property> updateProperty(@Valid @RequestBody Property property, @PathVariable("id") Long id, BindingResult result) {
         return new ResponseEntity<>(propertyService.updateProperty(property, id), HttpStatus.OK);
     }
 

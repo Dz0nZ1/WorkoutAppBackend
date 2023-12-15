@@ -2,7 +2,7 @@ package rs.ac.singidunum.workout.services.properties;
 
 import org.springframework.stereotype.Service;
 import rs.ac.singidunum.workout.exceptions.PlanNotFoundException;
-import rs.ac.singidunum.workout.models.workouts.PropertyModel;
+import rs.ac.singidunum.workout.models.workouts.Property;
 import rs.ac.singidunum.workout.repositories.PlanRepository;
 import rs.ac.singidunum.workout.repositories.PropertiesRepository;
 
@@ -20,34 +20,34 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public List<PropertyModel> getAllProperties() {
+    public List<Property> getAllProperties() {
         return propertiesRepository.findAll();
     }
 
 
     @Override
-    public List<PropertyModel> getAllPropertiesFromExercise(String forExercise) {
+    public List<Property> getAllPropertiesFromExercise(String forExercise) {
         return propertiesRepository.findAllByForExercise(forExercise);
     }
 
     @Override
-    public List<PropertyModel> getAllPropertiesByPlan(Long planId) {
+    public List<Property> getAllPropertiesByPlan(Long planId) {
         var plan = planRepository.findById(planId).orElseThrow(() -> new PlanNotFoundException("Plan not found"));
         return propertiesRepository.findAllByPlan(plan);
     }
 
     @Override
-    public PropertyModel getProperty(Long propertyId) {
+    public Property getProperty(Long propertyId) {
         return propertiesRepository.findById(propertyId).orElseThrow(null);
     }
 
     @Override
-    public PropertyModel createProperty(PropertyModel property) {
+    public Property createProperty(Property property) {
         return propertiesRepository.save(property);
     }
 
     @Override
-    public PropertyModel updateProperty(PropertyModel property, Long propertyId) {
+    public Property updateProperty(Property property, Long propertyId) {
         var newProperty = propertiesRepository.findById(propertyId).orElseThrow(null);
         newProperty.setReps(property.getReps());
         newProperty.setSets(property.getSets());
