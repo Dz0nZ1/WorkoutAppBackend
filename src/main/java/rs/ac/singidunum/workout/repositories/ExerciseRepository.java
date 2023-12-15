@@ -2,12 +2,12 @@ package rs.ac.singidunum.workout.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import rs.ac.singidunum.workout.models.workouts.ExerciseModel;
+import rs.ac.singidunum.workout.models.workouts.Exercise;
 
 @Repository
-public interface ExerciseRepository extends JpaRepository<ExerciseModel, Long> {
+public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
-    ExerciseModel findByName(String name);
+    Exercise findByName(String name);
 
     void deleteByName(String name);
 

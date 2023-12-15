@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
-import rs.ac.singidunum.workout.models.workouts.ExerciseModel;
+import rs.ac.singidunum.workout.models.workouts.Exercise;
 import rs.ac.singidunum.workout.services.exercises.ExerciseService;
 
 import java.util.HashMap;
@@ -27,27 +27,27 @@ public class ExerciseController {
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<List<ExerciseModel>> getAllExercises(){
+    public ResponseEntity<List<Exercise>> getAllExercises(){
         return new ResponseEntity<>(exerciseService.gelAllExercises(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<ExerciseModel> getExercise(@PathVariable("id") Long exerciseId){
+    public ResponseEntity<Exercise> getExercise(@PathVariable("id") Long exerciseId){
         return new ResponseEntity<>(exerciseService.getExercise(exerciseId), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('admin:create')")
-    public ResponseEntity<?> createExercise(@Valid @RequestBody ExerciseModel exerciseModel, BindingResult result) {
+    public ResponseEntity<?> createExercise(@Valid @RequestBody Exercise exercise, BindingResult result) {
 
         if(result.hasErrors()) {
             var exceptionHandler = new InvalidArgumentsHandler();
             return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(exerciseService.createExercise(exerciseModel), HttpStatus.CREATED);
+        return new ResponseEntity<>(exerciseService.createExercise(exercise), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -71,14 +71,14 @@ public class ExerciseController {
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('admin:update')")
-    public ResponseEntity<?> updateExercise(@Valid @RequestBody ExerciseModel exerciseModel, @PathVariable("id") Long exerciseId , BindingResult result){
+    public ResponseEntity<?> updateExercise(@Valid @RequestBody Exercise exercise, @PathVariable("id") Long exerciseId , BindingResult result){
 
         if(result.hasErrors()) {
             var exceptionHandler = new InvalidArgumentsHandler();
             return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
         }
 
-        return  new ResponseEntity<>(exerciseService.updateExercise(exerciseModel, exerciseId), HttpStatus.OK);
+        return  new ResponseEntity<>(exerciseService.updateExercise(exercise, exerciseId), HttpStatus.OK);
     }
 
 }

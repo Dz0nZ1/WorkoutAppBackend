@@ -3,7 +3,7 @@ package rs.ac.singidunum.workout.services.exercises;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
-import rs.ac.singidunum.workout.models.workouts.ExerciseModel;
+import rs.ac.singidunum.workout.models.workouts.Exercise;
 import rs.ac.singidunum.workout.repositories.ExerciseRepository;
 
 import java.util.List;
@@ -19,22 +19,22 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public List<ExerciseModel> gelAllExercises() {
+    public List<Exercise> gelAllExercises() {
         return exerciseRepository.findAll();
     }
 
     @Override
-    public ExerciseModel createExercise(ExerciseModel exerciseModel) {
-        return exerciseRepository.save(exerciseModel);
+    public Exercise createExercise(Exercise exercise) {
+        return exerciseRepository.save(exercise);
     }
 
     @Override
-    public ExerciseModel getExercise(Long exerciseId) throws ExerciseNotFoundException {
+    public Exercise getExercise(Long exerciseId) throws ExerciseNotFoundException {
         return exerciseRepository.findById(exerciseId).orElseThrow(() -> new ExerciseNotFoundException("This exercise doesn't exist"));
     }
 
     @Override
-    public ExerciseModel findExerciseByName(String name) {
+    public Exercise findExerciseByName(String name) {
         return exerciseRepository.findByName(name);
     }
 
@@ -50,11 +50,11 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public ExerciseModel updateExercise(ExerciseModel exerciseModel, Long exerciseId) {
+    public Exercise updateExercise(Exercise exercise, Long exerciseId) {
         var newExercise = exerciseRepository.findById(exerciseId).orElseThrow(() -> new ExerciseNotFoundException("Exercise doesn't exist "));
-        newExercise.setName(exerciseModel.getName());
-        newExercise.setCategory(exerciseModel.getCategory());
-        newExercise.setPhoto(exerciseModel.getPhoto());
+        newExercise.setName(exercise.getName());
+        newExercise.setCategory(exercise.getCategory());
+        newExercise.setPhoto(exercise.getPhoto());
         return exerciseRepository.save(newExercise);
     }
 }
