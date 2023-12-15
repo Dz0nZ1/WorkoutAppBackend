@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.models.auth.UserModel;
+import rs.ac.singidunum.workout.models.auth.User;
 import rs.ac.singidunum.workout.services.users.UserService;
 
 import java.util.List;
@@ -33,19 +33,19 @@ public class UserController {
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('user:read')")
-    public ResponseEntity<List<UserModel>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('user:create')")
-    public ResponseEntity<?> createUser(@Valid @RequestBody UserModel userModel, BindingResult result){
+    public ResponseEntity<?> createUser(@Valid @RequestBody User user, BindingResult result){
 
         if(result.hasErrors()) {
             var exceptionHandler = new InvalidArgumentsHandler();
             return new ResponseEntity<>(exceptionHandler.getErrorMessages(result), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(userService.createUser(userModel), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.createUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/get/{id}")

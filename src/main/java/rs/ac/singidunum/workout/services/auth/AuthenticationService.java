@@ -30,7 +30,7 @@ public class AuthenticationService {
 
     public AuthenticationResponseModel register(RegisterRequestModel request){
 
-        var user = UserModel.builder()
+        var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
@@ -75,8 +75,8 @@ public class AuthenticationService {
 
     }
 
-    private void saveUserToken(UserModel user, String jwtToken) {
-        var token = TokenModel.builder()
+    private void saveUserToken(User user, String jwtToken) {
+        var token = Token.builder()
                 .user(user)
                 .token(jwtToken)
                 .tokenType(TokenTypeEnum.BEARER)
@@ -86,7 +86,7 @@ public class AuthenticationService {
         tokenRepository.save(token);
     }
 
-    private void revokeAllUserTokens(UserModel user) {
+    private void revokeAllUserTokens(User user) {
         var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getUser_id());
         if (validUserTokens.isEmpty())
             return;
