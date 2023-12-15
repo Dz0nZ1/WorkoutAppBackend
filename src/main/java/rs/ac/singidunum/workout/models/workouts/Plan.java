@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.singidunum.workout.models.auth.UserModel;
+import rs.ac.singidunum.workout.models.auth.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "workout_plans")
 @Builder
-public class PlanModel {
+public class Plan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class PlanModel {
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private UserModel user;
+    private User user;
 
 
     @ManyToMany
@@ -43,12 +43,12 @@ public class PlanModel {
             joinColumns = @JoinColumn(name = "plan_id"),
             inverseJoinColumns = @JoinColumn(name = "exercise_id")
     )
-    private Set<ExerciseModel> exercises = new HashSet<>();
+    private Set<Exercise> exercises = new HashSet<>();
 
 
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<PropertyModel> properties = new ArrayList<>();
+    private List<Property> properties = new ArrayList<>();
 
 
 

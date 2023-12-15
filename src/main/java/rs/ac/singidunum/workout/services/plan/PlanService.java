@@ -1,22 +1,22 @@
 package rs.ac.singidunum.workout.services.plan;
 
-import rs.ac.singidunum.workout.models.workouts.PlanModel;
+import rs.ac.singidunum.workout.models.workouts.Plan;
 
 import java.util.List;
 
 public interface PlanService {
 
-    List<PlanModel> getAllPlans();
+    List<Plan> getAllPlans();
 
-    List<PlanModel> getAllPlansByName(String name);
+    List<Plan> getAllPlansByName(String name);
 
-    List<PlanModel> getAllPlansById(Long id);
+    List<Plan> getAllPlansById(Long id);
 
-    PlanModel getPlan(Long id);
+    Plan getPlan(Long id);
 
-    PlanModel createPlan(PlanModel planModel);
+    Plan createPlan(Plan plan);
 
-    PlanModel updatePlan(PlanModel planModel, Long id);
+    Plan updatePlan(Plan plan, Long id);
 
     void deletePlan(Long id);
 
