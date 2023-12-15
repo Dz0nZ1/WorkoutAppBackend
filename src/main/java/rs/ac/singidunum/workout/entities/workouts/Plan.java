@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.models.workouts;
+package rs.ac.singidunum.workout.entities.workouts;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.singidunum.workout.models.auth.User;
+import rs.ac.singidunum.workout.entities.auth.User;
 
 import java.util.ArrayList;
 import java.util.HashSet;

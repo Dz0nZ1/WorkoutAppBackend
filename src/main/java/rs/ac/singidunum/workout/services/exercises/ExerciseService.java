@@ -1,7 +1,7 @@
 package rs.ac.singidunum.workout.services.exercises;
 
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
-import rs.ac.singidunum.workout.models.workouts.Exercise;
+import rs.ac.singidunum.workout.entities.workouts.Exercise;
 
 import java.util.List;
 

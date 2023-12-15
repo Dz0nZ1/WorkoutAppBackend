@@ -1,5 +1,5 @@
 package rs.ac.singidunum.workout.services.properties;
-import rs.ac.singidunum.workout.models.workouts.Property;
+import rs.ac.singidunum.workout.entities.workouts.Property;
 
 import java.util.List;
 

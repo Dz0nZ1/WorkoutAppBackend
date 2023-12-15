@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.models.auth;
+package rs.ac.singidunum.workout.entities.auth;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

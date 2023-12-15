@@ -3,7 +3,7 @@ package rs.ac.singidunum.workout.services.exercises;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
-import rs.ac.singidunum.workout.models.workouts.Exercise;
+import rs.ac.singidunum.workout.entities.workouts.Exercise;
 import rs.ac.singidunum.workout.repositories.ExerciseRepository;
 
 import java.util.List;

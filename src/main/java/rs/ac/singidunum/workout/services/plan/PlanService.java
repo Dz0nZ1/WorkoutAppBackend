@@ -1,6 +1,6 @@
 package rs.ac.singidunum.workout.services.plan;
 
-import rs.ac.singidunum.workout.models.workouts.Plan;
+import rs.ac.singidunum.workout.entities.workouts.Plan;
 
 import java.util.List;
 

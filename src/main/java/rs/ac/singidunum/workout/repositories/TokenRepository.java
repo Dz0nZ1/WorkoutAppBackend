@@ -3,7 +3,7 @@ package rs.ac.singidunum.workout.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import rs.ac.singidunum.workout.models.auth.Token;
+import rs.ac.singidunum.workout.entities.auth.Token;
 
 import java.util.List;
 import java.util.Optional;

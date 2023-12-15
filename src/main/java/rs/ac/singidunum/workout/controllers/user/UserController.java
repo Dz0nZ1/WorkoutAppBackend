@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.models.auth.User;
+import rs.ac.singidunum.workout.entities.auth.User;
 import rs.ac.singidunum.workout.services.users.UserService;
 
 import java.util.List;

@@ -9,7 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
-import rs.ac.singidunum.workout.models.workouts.Exercise;
+import rs.ac.singidunum.workout.entities.workouts.Exercise;
 import rs.ac.singidunum.workout.services.exercises.ExerciseService;
 
 import java.util.HashMap;

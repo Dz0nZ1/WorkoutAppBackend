@@ -9,6 +9,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import rs.ac.singidunum.workout.entities.auth.Token;
+import rs.ac.singidunum.workout.entities.auth.User;
 import rs.ac.singidunum.workout.enums.RoleEnum;
 import rs.ac.singidunum.workout.enums.TokenTypeEnum;
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;

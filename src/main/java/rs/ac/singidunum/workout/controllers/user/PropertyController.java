@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.singidunum.workout.models.workouts.Property;
+import rs.ac.singidunum.workout.entities.workouts.Property;
 import rs.ac.singidunum.workout.services.properties.PropertyService;
 
 import java.util.HashMap;

@@ -3,7 +3,7 @@ package rs.ac.singidunum.workout.services.plan;
 import org.springframework.stereotype.Service;
 import rs.ac.singidunum.workout.exceptions.PlanNotFoundException;
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.models.workouts.Plan;
+import rs.ac.singidunum.workout.entities.workouts.Plan;
 import rs.ac.singidunum.workout.repositories.PlanRepository;
 import rs.ac.singidunum.workout.repositories.PropertiesRepository;
 import rs.ac.singidunum.workout.repositories.UserRepository;
