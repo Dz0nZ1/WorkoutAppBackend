@@ -1,17 +1,18 @@
 package rs.ac.singidunum.workout.services.users;
 
 import rs.ac.singidunum.workout.exceptions.UserNotFoundException;
-import rs.ac.singidunum.workout.entities.auth.User;
+import rs.ac.singidunum.workout.models.auth.CreateUserModel;
+import rs.ac.singidunum.workout.models.auth.UserModel;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> getAllUsers();
+    List<UserModel> getAllUsers();
 
-    User createUser(User user);
+    UserModel createUser(CreateUserModel userModel);
 
-    User getUser (Long userId) throws UserNotFoundException;
+    UserModel getUser (Long userId) throws UserNotFoundException;
 
-    User findByEmail(String email);
+    UserModel findByEmail(String email);
 }
