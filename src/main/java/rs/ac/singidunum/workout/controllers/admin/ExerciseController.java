@@ -9,7 +9,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.singidunum.workout.exceptions.InvalidArgumentsHandler;
-import rs.ac.singidunum.workout.entities.workouts.Exercise;
+import rs.ac.singidunum.workout.models.workout.exercise.CreateExerciseModel;
+import rs.ac.singidunum.workout.models.workout.exercise.ExerciseModel;
+import rs.ac.singidunum.workout.models.workout.exercise.UpdateExerciseModel;
 import rs.ac.singidunum.workout.services.exercises.ExerciseService;
 
 import java.util.HashMap;
@@ -27,20 +29,20 @@ public class ExerciseController {
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<List<Exercise>> getAllExercises(){
+    public ResponseEntity<List<ExerciseModel>> getAllExercises(){
         return new ResponseEntity<>(exerciseService.gelAllExercises(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<Exercise> getExercise(@PathVariable("id") Long exerciseId){
+    public ResponseEntity<ExerciseModel> getExercise(@PathVariable("id") Long exerciseId){
         return new ResponseEntity<>(exerciseService.getExercise(exerciseId), HttpStatus.OK);
     }
 
 
     @PostMapping("/create")
     @PreAuthorize("hasAuthority('admin:create')")
-    public ResponseEntity<?> createExercise(@Valid @RequestBody Exercise exercise, BindingResult result) {
+    public ResponseEntity<?> createExercise(@Valid @RequestBody CreateExerciseModel exercise, BindingResult result) {
 
         if(result.hasErrors()) {
             var exceptionHandler = new InvalidArgumentsHandler();
@@ -71,7 +73,7 @@ public class ExerciseController {
 
     @PutMapping("/update/{id}")
     @PreAuthorize("hasAuthority('admin:update')")
-    public ResponseEntity<?> updateExercise(@Valid @RequestBody Exercise exercise, @PathVariable("id") Long exerciseId , BindingResult result){
+    public ResponseEntity<?> updateExercise(@Valid @RequestBody UpdateExerciseModel exercise, @PathVariable("id") Long exerciseId , BindingResult result){
 
         if(result.hasErrors()) {
             var exceptionHandler = new InvalidArgumentsHandler();
