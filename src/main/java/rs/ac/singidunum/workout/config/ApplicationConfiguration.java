@@ -12,21 +12,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import rs.ac.singidunum.workout.services.users.UserService;
+import rs.ac.singidunum.workout.repositories.UserRepository;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfiguration {
 
-    private final UserService userService;
+    private final UserRepository userRepository;
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                var user = userService.findByEmail(username);
+                var user = userRepository.findByEmail(username);
                 if (user == null) {
-                    return (UserDetails) new UsernameNotFoundException("User nor found");
+                    throw new UsernameNotFoundException("User nor found");
                 }
                 return user;
             }
