@@ -1,24 +1,26 @@
 package rs.ac.singidunum.workout.services.exercises;
 
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
-import rs.ac.singidunum.workout.entities.workouts.Exercise;
+import rs.ac.singidunum.workout.models.workout.exercise.CreateExerciseModel;
+import rs.ac.singidunum.workout.models.workout.exercise.ExerciseModel;
+import rs.ac.singidunum.workout.models.workout.exercise.UpdateExerciseModel;
 
 import java.util.List;
 
 public interface ExerciseService {
 
-    List<Exercise> gelAllExercises();
+    List<ExerciseModel> gelAllExercises();
 
-    Exercise createExercise(Exercise exercise);
+    ExerciseModel createExercise(CreateExerciseModel exercise);
 
-    Exercise getExercise(Long exerciseId) throws ExerciseNotFoundException;
+    ExerciseModel getExercise(Long exerciseId) throws ExerciseNotFoundException;
 
-    Exercise findExerciseByName(String name);
+    ExerciseModel findExerciseByName(String name);
 
     void deleteExerciseByName(String name);
 
     void deleteExercise(Long exerciseId);
 
-    Exercise updateExercise(Exercise exercise, Long exerciseId);
+    ExerciseModel updateExercise(UpdateExerciseModel exercise, Long exerciseId);
 
 }

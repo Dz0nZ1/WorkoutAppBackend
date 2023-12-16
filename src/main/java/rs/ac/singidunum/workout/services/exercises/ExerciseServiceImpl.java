@@ -3,7 +3,10 @@ package rs.ac.singidunum.workout.services.exercises;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.singidunum.workout.exceptions.ExerciseNotFoundException;
-import rs.ac.singidunum.workout.entities.workouts.Exercise;
+import rs.ac.singidunum.workout.mappers.ExerciseMapper;
+import rs.ac.singidunum.workout.models.workout.exercise.CreateExerciseModel;
+import rs.ac.singidunum.workout.models.workout.exercise.ExerciseModel;
+import rs.ac.singidunum.workout.models.workout.exercise.UpdateExerciseModel;
 import rs.ac.singidunum.workout.repositories.ExerciseRepository;
 
 import java.util.List;
@@ -19,23 +22,26 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public List<Exercise> gelAllExercises() {
-        return exerciseRepository.findAll();
+    public List<ExerciseModel> gelAllExercises() {
+        return ExerciseMapper.mapExerciseListToExerciseListModel(exerciseRepository.findAll());
     }
 
     @Override
-    public Exercise createExercise(Exercise exercise) {
-        return exerciseRepository.save(exercise);
+    public ExerciseModel createExercise(CreateExerciseModel exerciseModel) {
+        var exercise = ExerciseMapper.mapCreateExerciseModelToExercise(exerciseModel);
+        exerciseRepository.save(exercise);
+        return ExerciseMapper.mapExerciseToExerciseModel(exercise);
     }
 
     @Override
-    public Exercise getExercise(Long exerciseId) throws ExerciseNotFoundException {
-        return exerciseRepository.findById(exerciseId).orElseThrow(() -> new ExerciseNotFoundException("This exercise doesn't exist"));
+    public ExerciseModel getExercise(Long exerciseId) throws ExerciseNotFoundException {
+        var exercise = exerciseRepository.findById(exerciseId).orElseThrow(() -> new ExerciseNotFoundException("This exercise doesn't exist"));
+        return ExerciseMapper.mapExerciseToExerciseModel(exercise);
     }
 
     @Override
-    public Exercise findExerciseByName(String name) {
-        return exerciseRepository.findByName(name);
+    public ExerciseModel findExerciseByName(String name) {
+        return ExerciseMapper.mapExerciseToExerciseModel(exerciseRepository.findByName(name));
     }
 
     @Override
@@ -50,11 +56,17 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise updateExercise(Exercise exercise, Long exerciseId) {
+    public ExerciseModel updateExercise(UpdateExerciseModel exercise, Long exerciseId) {
         var newExercise = exerciseRepository.findById(exerciseId).orElseThrow(() -> new ExerciseNotFoundException("Exercise doesn't exist "));
-        newExercise.setName(exercise.getName());
-        newExercise.setCategory(exercise.getCategory());
-        newExercise.setPhoto(exercise.getPhoto());
-        return exerciseRepository.save(newExercise);
+        if(exercise.getName() != null) {
+            newExercise.setName(exercise.getName());
+        }
+        if(exercise.getCategory() != null) {
+            newExercise.setCategory(exercise.getCategory());
+        }
+        if(exercise.getPhoto() != null) {
+            newExercise.setPhoto(exercise.getPhoto());
+        }
+        return ExerciseMapper.mapExerciseToExerciseModel(exerciseRepository.save(newExercise));
     }
 }
