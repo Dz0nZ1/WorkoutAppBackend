@@ -1,21 +1,23 @@
 package rs.ac.singidunum.workout.services.properties;
-import rs.ac.singidunum.workout.entities.workouts.Property;
+import rs.ac.singidunum.workout.models.workout.property.CreatePropertyModel;
+import rs.ac.singidunum.workout.models.workout.property.PropertyModel;
+import rs.ac.singidunum.workout.models.workout.property.UpdatePropertyModel;
 
 import java.util.List;
 
 public interface PropertyService {
 
-    List<Property> getAllProperties();
+    List<PropertyModel> getAllProperties();
 
-    List<Property> getAllPropertiesFromExercise(String fromPlane);
+    List<PropertyModel> getAllPropertiesFromExercise(String fromPlane);
 
-    List<Property> getAllPropertiesByPlan(Long planId);
+    List<PropertyModel> getAllPropertiesByPlan(Long planId);
 
-    Property getProperty(Long propertyId);
+    PropertyModel getProperty(Long propertyId);
 
-    Property createProperty(Property property);
+    PropertyModel createProperty(CreatePropertyModel property);
 
-    Property updateProperty(Property property, Long propertyId);
+    PropertyModel updateProperty(UpdatePropertyModel property, Long propertyId);
 
     void deleteProperty(Long propertyId);
 
