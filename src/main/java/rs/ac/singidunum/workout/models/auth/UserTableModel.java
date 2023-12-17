@@ -1,4 +1,4 @@
-package rs.ac.singidunum.workout.entities.workouts;
+package rs.ac.singidunum.workout.models.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
