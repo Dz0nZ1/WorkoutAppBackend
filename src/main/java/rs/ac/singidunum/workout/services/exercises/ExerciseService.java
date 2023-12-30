@@ -5,11 +5,11 @@ import rs.ac.singidunum.workout.models.workout.exercise.CreateExerciseModel;
 import rs.ac.singidunum.workout.models.workout.exercise.ExerciseModel;
 import rs.ac.singidunum.workout.models.workout.exercise.UpdateExerciseModel;
 
-import java.util.List;
+import java.util.Set;
 
 public interface ExerciseService {
 
-    List<ExerciseModel> gelAllExercises();
+    Set<ExerciseModel> gelAllExercises();
 
     ExerciseModel createExercise(CreateExerciseModel exercise);
 

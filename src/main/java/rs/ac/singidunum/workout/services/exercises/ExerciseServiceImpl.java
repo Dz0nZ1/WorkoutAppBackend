@@ -10,6 +10,7 @@ import rs.ac.singidunum.workout.models.workout.exercise.UpdateExerciseModel;
 import rs.ac.singidunum.workout.repositories.ExerciseRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ExerciseServiceImpl implements ExerciseService {
@@ -22,8 +23,8 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public List<ExerciseModel> gelAllExercises() {
-        return ExerciseMapper.mapExerciseListToExerciseListModel(exerciseRepository.findAll());
+    public Set<ExerciseModel> gelAllExercises() {
+        return ExerciseMapper.mapExerciseSetToExerciseSetModel(exerciseRepository.findAllSet());
     }
 
     @Override
