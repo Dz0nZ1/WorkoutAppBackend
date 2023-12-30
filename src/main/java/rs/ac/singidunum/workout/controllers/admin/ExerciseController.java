@@ -15,8 +15,8 @@ import rs.ac.singidunum.workout.models.workout.exercise.UpdateExerciseModel;
 import rs.ac.singidunum.workout.services.exercises.ExerciseService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/exercise")
@@ -29,7 +29,7 @@ public class ExerciseController {
 
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('admin:read')")
-    public ResponseEntity<List<ExerciseModel>> getAllExercises(){
+    public ResponseEntity<Set<ExerciseModel>> getAllExercises(){
         return new ResponseEntity<>(exerciseService.gelAllExercises(), HttpStatus.OK);
     }
 
